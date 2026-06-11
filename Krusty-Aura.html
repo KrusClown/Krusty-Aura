@@ -1,12 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Matrix Profile</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #000;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Courier New', Courier, monospace;
+      overflow: hidden;
+    }
+
+    canvas#matrix {
+      position: fixed;
+      top: 0; left: 0;
+      z-index: 0;
+      opacity: 0.85;
+    }
+
+    /* ── Card ── */
+    .card {
+      position: relative;
+      z-index: 10;
+      width: 320px;
+      background: rgba(0, 20, 0, 0.82);
+      border: 2px solid #00ff41;
+      border-radius: 4px;
+      padding: 36px 32px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      box-shadow:
+        0 0 18px #00ff4155,
+        0 0 48px #00ff4122,
+        inset 0 0 24px #00ff410a;
+    }
+
+    /* corner decorations */
+    .card::before, .card::after {
+      content: '';
+      position: absolute;
+      width: 14px; height: 14px;
+      border-color: #00ff41;
+      border-style: solid;
+    }
+    .card::before { top: -2px; left: -2px; border-width: 2px 0 0 2px; }
+    .card::after  { bottom: -2px; right: -2px; border-width: 0 2px 2px 0; }
+
+    /* ── Photo ── */
+    .avatar-wrap {
+      width: 110px; height: 110px;
+      border-radius: 50%;
+      border: 2px solid #00ff41;
+      box-shadow: 0 0 12px #00ff4188;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .avatar-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(0.7) brightness(0.95);
+    }
+
+    /* placeholder when no real photo */
+    .avatar-placeholder {
+      width: 100%; height: 100%;
+      background: #001a00;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      color: #00ff41;
+      user-select: none;
+    }
+
+    /* ── Text ── */
+    .name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #00ff41;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-shadow: 0 0 8px #00ff41;
+      text-align: center;
+    }
+
+    .role {
+      font-size: 0.72rem;
+      color: #00c930;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-top: -10px;
+    }
+
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #00ff41, transparent);
+      opacity: 0.5;
+    }
+
+    .description {
+      font-size: 0.82rem;
+      color: #7fff7f;
+      line-height: 1.65;
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── GitHub link ── */
+    .github-link {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: #00ff41;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      opacity: 0.85;
+      transition: opacity 0.2s, text-shadow 0.2s;
+    }
+    .github-link:hover {
+      opacity: 1;
+      text-shadow: 0 0 10px #00ff41;
+    }
+    .github-link svg {
+      flex-shrink: 0;
+      filter: drop-shadow(0 0 4px #00ff4188);
+    }
+  </style>
 </head>
 <body>
-    <h1>Welcome!</h1>
-    <p>Page building.</p>
+
+<canvas id="matrix"></canvas>
+
+<!-- ══ CARD ══ -->
+<div class="card">
+
+  <div class="avatar-wrap">
+    <!--
+      Replace the src below with your own image URL or local path.
+      Example: <img src="photo.jpg" alt="Profile photo" />
+      The placeholder icon shows when no image is provided.
+    -->
+    <img
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Culinary_fruits_front_view.jpg/1200px-Culinary_fruits_front_view.jpg"
+      alt="Profile photo"
+      onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'avatar-placeholder\'>◈</div>';"
+    />
+  </div>
+
+  <div class="name">Name</div>
+  <div class="role">System Architect</div>
+
+  <div class="divider"></div>
+
+  <p class="description">
+    Description.
+  </p>
+
+  <div class="divider"></div>
+
+  <a class="cta" href="https://github.com" target="_blank" rel="noopener">
+    &gt; Enter the Matrix
+  </a>
+
+  <div class="status">
+    <span class="dot"></span>
+    SYSTEM ONLINE
+  </div>
+
+</div>
+
+<!-- ══ MATRIX RAIN ══ -->
+<script>
+  const canvas = document.getElementById('matrix');
+  const ctx    = canvas.getContext('2d');
+
+  const CHARS  = 'アイウエオカキクケコサシスセソタチツテトナニヌネノABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()';
+  const FONT_SIZE = 14;
+  let cols, drops;
+
+  function resize() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+    cols  = Math.floor(canvas.width / FONT_SIZE);
+    drops = Array.from({ length: cols }, () => Math.random() * -50 | 0);
+  }
+
+  function draw() {
+    ctx.fillStyle = 'rgba(0,0,0,0.05)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.font = FONT_SIZE + 'px "Courier New", monospace';
+
+    for (let i = 0; i < drops.length; i++) {
+      const char = CHARS[Math.random() * CHARS.length | 0];
+      const y    = drops[i] * FONT_SIZE;
+
+      // head char is bright white-green
+      if (drops[i] > 0 && Math.random() > 0.95) {
+        ctx.fillStyle = '#e0ffe0';
+      } else {
+        // vary brightness for depth
+        const bright = Math.random() > 0.7 ? '00ff41' : '009922';
+        ctx.fillStyle = '#' + bright;
+      }
+
+      ctx.fillText(char, i * FONT_SIZE, y);
+
+      if (y > canvas.height && Math.random() > 0.975) {
+        drops[i] = 0;
+      }
+      drops[i]++;
+    }
+  }
+
+  resize();
+  window.addEventListener('resize', resize);
+  setInterval(draw, 40);
+</script>
 </body>
 </html>
