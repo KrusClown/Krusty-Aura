@@ -1,0 +1,271 @@
+/* ═══════════════════════════════════════════
+   KRUSTY AURA — Biography Page Styles
+   File: style.css
+   ═══════════════════════════════════════════ */
+
+/* ── Reset & Base ── */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --green-primary:   #00ff41;
+  --green-mid:       #00c930;
+  --green-soft:      #7fff7f;
+  --green-dark:      #009922;
+  --green-bg:        rgba(0, 20, 0, 0.82);
+  --green-glow-lg:   #00ff4155;
+  --green-glow-sm:   #00ff4122;
+  --green-glow-in:   #00ff410a;
+  --black:           #000000;
+  --font-mono:       'Courier New', Courier, monospace;
+}
+
+body {
+  background: var(--black);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  overflow: hidden;
+}
+
+/* ── Matrix Canvas ── */
+canvas#matrix {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  opacity: 0.85;
+}
+
+/* ═══════════════════════════════════════════
+   CARD
+   ═══════════════════════════════════════════ */
+.card {
+  position: relative;
+  z-index: 10;
+  width: 320px;
+  background: var(--green-bg);
+  border: 2px solid var(--green-primary);
+  border-radius: 4px;
+  padding: 36px 32px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  box-shadow:
+    0 0 18px var(--green-glow-lg),
+    0 0 48px var(--green-glow-sm),
+    inset 0 0 24px var(--green-glow-in);
+}
+
+/* Corner bracket decorations */
+.card::before,
+.card::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: var(--green-primary);
+  border-style: solid;
+}
+
+.card::before {
+  top: -2px;
+  left: -2px;
+  border-width: 2px 0 0 2px;
+}
+
+.card::after {
+  bottom: -2px;
+  right: -2px;
+  border-width: 0 2px 2px 0;
+}
+
+/* ═══════════════════════════════════════════
+   AVATAR / PHOTO
+   ═══════════════════════════════════════════ */
+.avatar-wrap {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 2px solid var(--green-primary);
+  box-shadow: 0 0 12px #00ff4188;
+  overflow: hidden;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.avatar-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(0.7) brightness(0.95);
+  transition: filter 0.3s ease;
+}
+
+.avatar-wrap:hover img {
+  filter: saturate(1) brightness(1.05);
+}
+
+/* Upload overlay — visible on hover when a photo is loaded */
+.avatar-wrap .upload-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 20, 0, 0.75);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  border-radius: 50%;
+}
+
+.avatar-wrap:hover .upload-overlay {
+  opacity: 1;
+}
+
+.upload-overlay .upload-icon {
+  font-size: 22px;
+  color: var(--green-primary);
+  text-shadow: 0 0 6px var(--green-primary);
+}
+
+.upload-overlay .upload-label {
+  font-size: 0.6rem;
+  color: var(--green-primary);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Placeholder shown before any photo is chosen */
+.avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  background: #001a00;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: var(--green-primary);
+  user-select: none;
+}
+
+.avatar-placeholder .ph-icon {
+  font-size: 36px;
+  opacity: 0.6;
+}
+
+.avatar-placeholder .ph-text {
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+/* Hidden file input */
+#photo-input {
+  display: none;
+}
+
+/* ═══════════════════════════════════════════
+   TYPOGRAPHY
+   ═══════════════════════════════════════════ */
+.name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--green-primary);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-shadow: 0 0 8px var(--green-primary);
+  text-align: center;
+}
+
+.role {
+  font-size: 0.72rem;
+  color: var(--green-mid);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-top: -10px;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--green-primary),
+    transparent
+  );
+  opacity: 0.5;
+}
+
+.description {
+  font-size: 0.82rem;
+  color: var(--green-soft);
+  line-height: 1.65;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+/* ═══════════════════════════════════════════
+   GITHUB LINK
+   ═══════════════════════════════════════════ */
+.github-link {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--green-primary);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  opacity: 0.8;
+  transition: opacity 0.2s ease, text-shadow 0.2s ease;
+}
+
+.github-link:hover {
+  opacity: 1;
+  text-shadow: 0 0 10px var(--green-primary);
+}
+
+.github-link svg {
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 4px #00ff4188);
+  transition: filter 0.2s ease;
+}
+
+.github-link:hover svg {
+  filter: drop-shadow(0 0 8px var(--green-primary));
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════ */
+@media (max-width: 400px) {
+  .card {
+    width: 92vw;
+    padding: 28px 20px 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .avatar-wrap img,
+  .avatar-wrap .upload-overlay,
+  .github-link,
+  .github-link svg {
+    transition: none;
+  }
+}
