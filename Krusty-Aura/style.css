@@ -17,7 +17,7 @@
   --green-mid:       #00c930;
   --green-soft:      #7fff7f;
   --green-dark:      #009922;
-  --green-bg:        rgba(0, 20, 0, 0.82);
+  --green-bg:        rgba(0, 20, 0, 0.96);
   --green-glow-lg:   #00ff4155;
   --green-glow-sm:   #00ff4122;
   --green-glow-in:   #00ff410a;
@@ -100,7 +100,6 @@ canvas#matrix {
   box-shadow: 0 0 12px #00ff4188;
   overflow: hidden;
   flex-shrink: 0;
-  cursor: pointer;
 }
 
 .avatar-wrap img {
@@ -112,41 +111,6 @@ canvas#matrix {
   transition: filter 0.3s ease;
 }
 
-.avatar-wrap:hover img {
-  filter: saturate(1) brightness(1.05);
-}
-
-/* Upload overlay — visible on hover when a photo is loaded */
-.avatar-wrap .upload-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 20, 0, 0.75);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  opacity: 0;
-  transition: opacity 0.25s ease;
-  border-radius: 50%;
-}
-
-.avatar-wrap:hover .upload-overlay {
-  opacity: 1;
-}
-
-.upload-overlay .upload-icon {
-  font-size: 22px;
-  color: var(--green-primary);
-  text-shadow: 0 0 6px var(--green-primary);
-}
-
-.upload-overlay .upload-label {
-  font-size: 0.6rem;
-  color: var(--green-primary);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
 
 /* Placeholder shown before any photo is chosen */
 .avatar-placeholder {

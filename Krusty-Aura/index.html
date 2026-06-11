@@ -15,32 +15,12 @@
      BIOGRAPHY CARD
      ══════════════════════════ -->
 <div class="card">
-
-  <!-- ── Profile photo (click to upload) ── -->
-  <div class="avatar-wrap" onclick="document.getElementById('photo-input').click()">
-
-    <!-- Hidden file input — accepts images only -->
-    <input
-      type="file"
-      id="photo-input"
-      accept="image/*"
-      onchange="loadPhoto(event)"
+  <div class="avatar-wrap">
+    <img
+      src="Whatuwantdude.jpeg"
+      alt="Krusty profile photo"
+      onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'avatar-placeholder\'><span class=\'ph-icon\'>◈</span><span class=\'ph-text\'>Add photo</span></div>';"
     />
-
-    <!-- Photo or placeholder rendered by JS -->
-    <div id="avatar-inner">
-      <div class="avatar-placeholder">
-        <span class="ph-icon">◈</span>
-        <span class="ph-text">Upload photo</span>
-      </div>
-    </div>
-
-    <!-- Hover overlay (shows after photo is loaded) -->
-    <div class="upload-overlay" id="upload-overlay" style="display:none;">
-      <span class="upload-icon">↑</span>
-      <span class="upload-label">Change photo</span>
-    </div>
-
   </div>
 
   <!-- ── Name & role ── -->
@@ -76,11 +56,8 @@
 
 </div>
 
-<!-- ══════════════════════════
-     SCRIPTS
-     ══════════════════════════ -->
+<!-- ══ Scripts ══ -->
 <script src="matrix.js"></script>
-<script src="upload.js"></script>
 
 </body>
 </html>
