@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Matrix Profile</title>
+  <title>Biography</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -70,7 +70,6 @@
       filter: saturate(0.7) brightness(0.95);
     }
 
-    /* placeholder when no real photo */
     .avatar-placeholder {
       width: 100%; height: 100%;
       background: #001a00;
@@ -124,9 +123,9 @@
       color: #00ff41;
       font-family: 'Courier New', Courier, monospace;
       font-size: 0.8rem;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       text-decoration: none;
-      opacity: 0.85;
+      opacity: 0.8;
       transition: opacity 0.2s, text-shadow 0.2s;
     }
     .github-link:hover {
@@ -148,9 +147,8 @@
 
   <div class="avatar-wrap">
     <!--
-      Replace the src below with your own image URL or local path.
-      Example: <img src="photo.jpg" alt="Profile photo" />
-      The placeholder icon shows when no image is provided.
+      Replace src with your own photo URL or local path.
+      e.g. <img src="photo.jpg" alt="Your name" />
     -->
     <img
       src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Culinary_fruits_front_view.jpg/1200px-Culinary_fruits_front_view.jpg"
@@ -159,25 +157,26 @@
     />
   </div>
 
-  <div class="name">Name</div>
-  <div class="role">System Architect</div>
+  <div class="name">Your Name</div>
+  <div class="role">Software Developer</div>
 
   <div class="divider"></div>
 
   <p class="description">
-    Description.
+    Developer passionate about open-source, clean architecture,
+    and building tools that make a difference. Always exploring
+    new technologies and sharing knowledge with the community.
   </p>
 
   <div class="divider"></div>
 
-  <a class="cta" href="https://github.com" target="_blank" rel="noopener">
-    &gt; Enter the Matrix
+  <!-- Replace href with your real GitHub URL -->
+  <a class="github-link" href="https://github.com/yourusername" target="_blank" rel="noopener">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="#00ff41" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+    </svg>
+    github.com/yourusername
   </a>
-
-  <div class="status">
-    <span class="dot"></span>
-    SYSTEM ONLINE
-  </div>
 
 </div>
 
@@ -200,27 +199,21 @@
   function draw() {
     ctx.fillStyle = 'rgba(0,0,0,0.05)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-
     ctx.font = FONT_SIZE + 'px "Courier New", monospace';
 
     for (let i = 0; i < drops.length; i++) {
       const char = CHARS[Math.random() * CHARS.length | 0];
       const y    = drops[i] * FONT_SIZE;
 
-      // head char is bright white-green
       if (drops[i] > 0 && Math.random() > 0.95) {
         ctx.fillStyle = '#e0ffe0';
       } else {
-        // vary brightness for depth
-        const bright = Math.random() > 0.7 ? '00ff41' : '009922';
-        ctx.fillStyle = '#' + bright;
+        ctx.fillStyle = Math.random() > 0.7 ? '#00ff41' : '#009922';
       }
 
       ctx.fillText(char, i * FONT_SIZE, y);
 
-      if (y > canvas.height && Math.random() > 0.975) {
-        drops[i] = 0;
-      }
+      if (y > canvas.height && Math.random() > 0.975) drops[i] = 0;
       drops[i]++;
     }
   }
