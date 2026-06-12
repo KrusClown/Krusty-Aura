@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="green">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -56,8 +56,20 @@
 
 </div>
 
+<!-- ══════════════════════════
+     THEME SWITCHER
+     ══════════════════════════ -->
+<div class="theme-switcher" role="group" aria-label="Color theme">
+  <button class="theme-btn active" data-color="green"  title="Green"  aria-label="Green theme"></button>
+  <button class="theme-btn"        data-color="red"    title="Red"    aria-label="Red theme"></button>
+  <button class="theme-btn"        data-color="purple" title="Purple" aria-label="Purple theme"></button>
+  <button class="theme-btn"        data-color="blue"   title="Blue"   aria-label="Blue theme"></button>
+  <button class="theme-btn"        data-color="rgb"    title="RGB"    aria-label="RGB mode"></button>
+</div>
+
 <!-- ══ Scripts ══ -->
 <script src="matrix.js"></script>
+<script src="theme.js"></script>
 
 </body>
 </html>

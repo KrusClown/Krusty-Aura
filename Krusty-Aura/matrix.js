@@ -19,7 +19,12 @@ function resize() {
 }
 
 function draw() {
-  /* Fade trail */
+  // Get current theme colors (falls back to green if theme.js not loaded yet)
+  const colors = window.getMatrixColors
+    ? window.getMatrixColors()
+    : { primary: '#00ff41', dark: '#009922', head: '#e0ffe0' };
+
+  // Fade trail
   ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -29,20 +34,18 @@ function draw() {
     const char = CHARS[Math.random() * CHARS.length | 0];
     const y    = drops[i] * FONT_SIZE;
 
-    /* Bright head character */
+    // Bright head character
     if (drops[i] > 0 && Math.random() > 0.95) {
-      ctx.fillStyle = '#e0ffe0';
+      ctx.fillStyle = colors.head;
     } else {
-      /* Vary brightness for depth */
-      ctx.fillStyle = Math.random() > 0.7 ? '#00ff41' : '#009922';
+      // Vary brightness for depth
+      ctx.fillStyle = Math.random() > 0.7 ? colors.primary : colors.dark;
     }
 
     ctx.fillText(char, i * FONT_SIZE, y);
 
-    /* Reset column to top randomly */
-    if (y > canvas.height && Math.random() > 0.975) {
-      drops[i] = 0;
-    }
+    // Reset column to top randomly
+    if (y > canvas.height && Math.random() > 0.975) drops[i] = 0;
     drops[i]++;
   }
 }
