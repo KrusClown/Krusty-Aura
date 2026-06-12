@@ -394,3 +394,109 @@ canvas#matrix {
   .github-link, .github-link svg, .avatar-wrap,
   .theme-btn { transition: none; animation: none; }
 }
+
+
+/* ═══════════════════════════════════════════
+   LANGUAGE SWITCHER
+   ═══════════════════════════════════════════ */
+.lang-switcher {
+  position: fixed;
+  top: 20px;
+  right: 24px;
+  z-index: 100;
+}
+
+/* ── Trigger button ── */
+.lang-trigger {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.75);
+  border: 1px solid var(--c-primary);
+  border-radius: 6px;
+  padding: 7px 12px;
+  color: var(--c-primary);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: box-shadow 0.2s ease, border-color 0.4s ease, color 0.4s ease;
+}
+
+.lang-trigger:hover {
+  box-shadow: 0 0 10px color-mix(in srgb, var(--c-primary) 50%, transparent);
+}
+
+.lang-trigger .lang-arrow {
+  font-size: 0.6rem;
+  opacity: 0.7;
+  transition: transform 0.2s ease;
+}
+
+.lang-trigger[aria-expanded="true"] .lang-arrow {
+  transform: rotate(180deg);
+}
+
+/* ── Dropdown list ── */
+.lang-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: rgba(0, 0, 0, 0.92);
+  border: 1px solid var(--c-primary);
+  border-radius: 6px;
+  list-style: none;
+  overflow: hidden;
+  min-width: 90px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--c-primary) 25%, transparent);
+
+  /* Hidden by default */
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease, border-color 0.4s ease;
+}
+
+.lang-dropdown.open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+
+/* ── Each option ── */
+.lang-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  cursor: pointer;
+  color: var(--c-soft);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.lang-option:hover {
+  background: color-mix(in srgb, var(--c-primary) 15%, transparent);
+  color: var(--c-primary);
+}
+
+.lang-option.active {
+  color: var(--c-primary);
+  background: color-mix(in srgb, var(--c-primary) 10%, transparent);
+}
+
+.lang-option .lang-opt-flag { font-size: 1rem; }
+.lang-option .lang-opt-label { font-weight: 700; }
+
+/* Divider between options */
+.lang-option + .lang-option {
+  border-top: 1px solid color-mix(in srgb, var(--c-primary) 15%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lang-trigger, .lang-dropdown, .lang-option { transition: none; }
+}
