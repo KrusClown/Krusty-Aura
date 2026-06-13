@@ -24,4 +24,20 @@ A row of buttons at the bottom-center lets you switch the entire color scheme in
 | 🔵  | `Cyan blue` |
 | 🌈  | `Full rainbow cycling animation` |
 
+Your chosen theme is saved in localStorage and restored on next visit.
+
+# Language Switcher
+A dropdown in the top-right corner switches the role and biography text between languages.
+## 🌐 Languages
+
+| Flag | Code | Language   |
+|------|------|------------|
+| 🇺🇸  | EN   | English    |
+| 🇪🇸  | ES   | Spanish    |
+| 🇧🇷  | PT   | Portuguese |
+| 🇫🇷  | FR   | French     |
+| 🇯🇵  | JP   | Japanese   |
+
+Your chosen language is also saved in localStorage.
+
 
