@@ -44,4 +44,7 @@ Your chosen language is also saved in localStorage.
 
 # Browser Support
 Works in all modern browsers (Chrome, Firefox, Safari, Edge). No build tools, no npm, no dependencies.
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=chrome,firefox,safari,edge&perline=4" />
+</p>
 
