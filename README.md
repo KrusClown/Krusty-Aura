@@ -43,7 +43,8 @@ A dropdown in the top-right corner switches the role and biography text between 
 Your chosen language is also saved in localStorage.
 
 # Browser Support
-Works in all modern browsers (Chrome, Firefox, Safari, Edge). No build tools, no npm, no dependencies.
+Works in all modern browsers (Chrome, Firefox, Safari, Edge, Opera, Brave). No build tools, no npm, no dependencies.
+
 ## 🌐 Browser Support
 
 ![Chrome](https://img.shields.io/badge/Chrome-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white)
@@ -51,3 +52,4 @@ Works in all modern browsers (Chrome, Firefox, Safari, Edge). No build tools, no
 ![Safari](https://img.shields.io/badge/Safari-000000?style=for-the-badge&logo=safari&logoColor=white)
 ![Edge](https://img.shields.io/badge/Edge-0078D7?style=for-the-badge&logo=microsoftedge&logoColor=white)
 ![Opera](https://img.shields.io/badge/Opera-FF1B2D?style=for-the-badge&logo=opera&logoColor=white)
+![Brave](https://img.shields.io/badge/Brave-FB542B?style=for-the-badge&logo=brave&logoColor=white)
