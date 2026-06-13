@@ -40,4 +40,6 @@ A dropdown in the top-right corner switches the role and biography text between 
 
 Your chosen language is also saved in localStorage.
 
+# Browser Support
+Works in all modern browsers (Chrome, Firefox, Safari, Edge). No build tools, no npm, no dependencies.
 
