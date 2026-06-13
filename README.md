@@ -37,6 +37,8 @@ A dropdown in the top-right corner switches the role and biography text between 
 | 🇧🇷  | PT   | Portuguese |
 | 🇫🇷  | FR   | French     |
 | 🇯🇵  | JP   | Japanese   |
+| 🇸🇦  | AR   | Arabic     |
+| 🇨🇳  | ZH   | Chinese    |
 
 Your chosen language is also saved in localStorage.
 
