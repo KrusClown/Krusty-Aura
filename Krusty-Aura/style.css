@@ -500,3 +500,22 @@ canvas#matrix {
 @media (prefers-reduced-motion: reduce) {
   .lang-trigger, .lang-dropdown, .lang-option { transition: none; }
 }
+
+
+/* ═══════════════════════════════════════════
+   RTL SUPPORT (Arabic)
+   ═══════════════════════════════════════════ */
+[lang="ar"] .card {
+  direction: rtl;
+}
+
+[lang="ar"] .description,
+[lang="ar"] .role,
+[lang="ar"] .name {
+  font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+  letter-spacing: 0;
+}
+
+[lang="ar"] .github-link {
+  direction: ltr; /* keep GitHub link always LTR */
+}
