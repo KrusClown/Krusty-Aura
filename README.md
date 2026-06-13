@@ -44,7 +44,10 @@ Your chosen language is also saved in localStorage.
 
 # Browser Support
 Works in all modern browsers (Chrome, Firefox, Safari, Edge). No build tools, no npm, no dependencies.
-<p align="center">
-  <img src="https://skillicons.dev/icons?i=chrome,firefox,safari,edge&perline=4" />
-</p>
+## 🌐 Browser Support
 
+![Chrome](https://img.shields.io/badge/Chrome-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white)
+![Firefox](https://img.shields.io/badge/Firefox-FF7139?style=for-the-badge&logo=firefox&logoColor=white)
+![Safari](https://img.shields.io/badge/Safari-000000?style=for-the-badge&logo=safari&logoColor=white)
+![Edge](https://img.shields.io/badge/Edge-0078D7?style=for-the-badge&logo=microsoftedge&logoColor=white)
+![Opera](https://img.shields.io/badge/Opera-FF1B2D?style=for-the-badge&logo=opera&logoColor=white)
